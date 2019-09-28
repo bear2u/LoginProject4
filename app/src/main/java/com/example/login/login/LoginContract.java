@@ -10,6 +10,7 @@ public class LoginContract {
     public interface Presenter {
         void setView(View view);
         void loginProc(User user);
+        void loginDone();
     }
 
     public interface Model {

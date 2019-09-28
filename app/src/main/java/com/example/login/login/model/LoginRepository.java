@@ -1,6 +1,9 @@
 package com.example.login.login.model;
 
-// Data Layer
-public class LoginRepository {
+import com.example.login.login.LoginContract;
 
+// Data Layer
+public interface LoginRepository {
+    void setPresenter(LoginContract.Presenter presenter);
+    void loginProc(User user);
 }
