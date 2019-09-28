@@ -1,8 +1,12 @@
 package com.example.login.common;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.room.Room;
+
+import com.facebook.stetho.BuildConfig;
+import com.facebook.stetho.Stetho;
 
 public class MyApp extends Application {
 
@@ -10,10 +14,20 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         initRoom();
+        initSteho();
+    }
+
+    private void initSteho() {
+        Log.d("MyApp", BuildConfig.BUILD_TYPE + "");
+//        if(BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this);
+//        }
     }
 
     private void initRoom() {
         AppDatabaseProvider.getINSTANCE(getApplicationContext());
     }
+
+
 
 }

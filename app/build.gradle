@@ -42,4 +42,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //Steho
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 }

@@ -23,7 +23,9 @@ public class AppDatabaseProvider {
         if(INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 INSTANCE = Room.databaseBuilder(context,
-                        AppDatabase.class, "db").build();
+                        AppDatabase.class, "db")
+                        .fallbackToDestructiveMigration()
+                        .build();
             }
         }
 

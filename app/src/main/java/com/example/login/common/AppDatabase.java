@@ -7,7 +7,7 @@ import com.example.login.login.model.datasources.local.UserDao;
 import com.example.login.login.model.datasources.local.UserEntity;
 
 @Database(entities = {UserEntity.class},
-        version = 1)
+        version = 2)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao getUserDao();
 }
