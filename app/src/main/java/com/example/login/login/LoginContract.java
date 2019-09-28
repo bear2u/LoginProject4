@@ -10,7 +10,6 @@ public class LoginContract {
     }
 
     public interface Presenter extends BasePresenter<View> {
-        void setView(LoginContract.View view);
         void loginProc(User user);
         void loginDone();
     }
