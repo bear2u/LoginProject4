@@ -18,6 +18,7 @@ public class MyApp extends Application {
     }
 
     private void initSteho() {
+        //chrome://inspect/#devices
         Log.d("MyApp", BuildConfig.BUILD_TYPE + "");
 //        if(BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this);

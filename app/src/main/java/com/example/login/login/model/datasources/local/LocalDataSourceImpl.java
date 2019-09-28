@@ -30,11 +30,14 @@ public class LocalDataSourceImpl implements DataSource {
                 UserEntity selectedEntity = userDao.login(user.getId(), user.getPwd());
                 Log.d("DB", selectedEntity.toString());
 
+                if(selectedEntity != null) {
+                    this.loginRepository.loginDone();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
 
-        this.loginRepository.loginDone();
     }
 }
