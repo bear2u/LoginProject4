@@ -96,4 +96,10 @@ public class LoginActivity extends AppCompatActivity
     public void loginDone() {
         Toast.makeText(this, " Ok! Done ", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onDestroy() {
+        presenter.removeView();
+        super.onDestroy();
+    }
 }

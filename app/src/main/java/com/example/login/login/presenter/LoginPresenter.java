@@ -15,7 +15,6 @@ public class LoginPresenter
     LoginRepository repository = new LoginRepositoryImpl();
 
     @Override
-
     public void setView(LoginContract.View view) {
         this.view = view;
         repository.setPresenter(this);
@@ -23,7 +22,7 @@ public class LoginPresenter
 
     @Override
     public void removeView() {
-        this.view = null;
+        view = null;
     }
 
 
