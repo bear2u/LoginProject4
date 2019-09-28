@@ -13,6 +13,7 @@ public class LocalDataSourceImpl implements DataSource {
 
     @Override
     public void loginProc(User user) {
+        //TODO 마지막 작업
         this.loginRepository.loginDone();
     }
 }
