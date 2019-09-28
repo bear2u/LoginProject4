@@ -1,4 +1,4 @@
-package com.example.login.login.base;
+package com.example.login.base;
 
 public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T>{
     T view;

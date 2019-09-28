@@ -1,7 +1,7 @@
 package com.example.login.login.presenter;
 
 import com.example.login.login.LoginContract;
-import com.example.login.login.base.BasePresenterImpl;
+import com.example.login.base.BasePresenterImpl;
 import com.example.login.login.model.LoginRepository;
 import com.example.login.login.model.LoginRepositoryImpl;
 import com.example.login.login.model.User;

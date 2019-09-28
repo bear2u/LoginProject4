@@ -2,8 +2,8 @@ package com.example.login.login.model;
 
 import com.example.login.login.LoginContract;
 import com.example.login.login.model.datasources.DataSource;
-import com.example.login.login.model.datasources.LocalDataSourceImpl;
-import com.example.login.login.model.datasources.RemoteDataSourceimpl;
+import com.example.login.login.model.datasources.local.LocalDataSourceImpl;
+import com.example.login.login.model.datasources.remote.RemoteDataSourceimpl;
 
 public class LoginRepositoryImpl implements LoginRepository{
 

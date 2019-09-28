@@ -1,7 +1,8 @@
-package com.example.login.login.model.datasources;
+package com.example.login.login.model.datasources.local;
 
 import com.example.login.login.model.LoginRepository;
 import com.example.login.login.model.User;
+import com.example.login.login.model.datasources.DataSource;
 
 public class LocalDataSourceImpl implements DataSource {
 
@@ -13,7 +14,7 @@ public class LocalDataSourceImpl implements DataSource {
 
     @Override
     public void loginProc(User user) {
-        //TODO 마지막 작업
+
         this.loginRepository.loginDone();
     }
 }

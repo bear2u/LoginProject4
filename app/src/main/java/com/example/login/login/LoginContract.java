@@ -1,7 +1,7 @@
 package com.example.login.login;
 
-import com.example.login.login.base.BasePresenter;
-import com.example.login.login.base.BaseView;
+import com.example.login.base.BasePresenter;
+import com.example.login.base.BaseView;
 import com.example.login.login.model.User;
 
 public class LoginContract {
