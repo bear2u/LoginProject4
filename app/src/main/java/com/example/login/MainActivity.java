@@ -14,9 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    EditText etTitle, etPwd;
+    @BindView(R.id.id)
+    EditText etTitle;
+    @BindView(R.id.pwd)
+    EditText etPwd;
+
     static final String _TAG = "MainActivity";
 
     @Override
@@ -25,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        etTitle = findViewById(R.id.id);
-        etPwd = findViewById(R.id.pwd);
+        ButterKnife.bind(this);
 
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
