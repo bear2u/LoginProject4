@@ -12,10 +12,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,20 +26,24 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.pwd)
     EditText etPwd;
 
+    @BindView(R.id.btnSave)
+    Button btnSave;
+
     static final String _TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(_TAG, "title: " + etTitle.getText() + " pwd: " + etPwd.getText());
+                save();
             }
         });
 
@@ -50,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    private void save() {
+        Log.d(_TAG, "title: " + etTitle.getText() + " pwd: " + etPwd.getText());
+    }
+
+//    @OnClick(R.id.btnSave)
+//    void save() {
+//
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
