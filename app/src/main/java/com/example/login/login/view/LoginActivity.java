@@ -1,7 +1,8 @@
-package com.example.login;
+package com.example.login.login.view;
 
 import android.os.Bundle;
 
+import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -19,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.id)
     EditText etTitle;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btnSave)
     Button btnSave;
 
-    static final String _TAG = "MainActivity";
+    static final String _TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +48,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     private void save() {
         Log.d(_TAG, "title: " + etTitle.getText() + " pwd: " + etPwd.getText());
     }
 
-//    @OnClick(R.id.btnSave)
-//    void save() {
-//
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
