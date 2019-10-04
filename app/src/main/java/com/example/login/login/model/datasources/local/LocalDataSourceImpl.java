@@ -7,9 +7,29 @@ import com.example.login.login.model.LoginRepository;
 import com.example.login.login.model.User;
 import com.example.login.login.model.datasources.DataSource;
 
+import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.CompletableSource;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.SingleSource;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Function;
+
 public class LocalDataSourceImpl implements DataSource {
 
     LoginRepository loginRepository;
+    UserDao userDao = null;
+
+    public LocalDataSourceImpl() {
+        try {
+            userDao = AppDatabaseProvider.getINSTANCE().getUserDao();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void setRepository(LoginRepository repository) {
@@ -17,27 +37,25 @@ public class LocalDataSourceImpl implements DataSource {
     }
 
     @Override
-    public void loginProc(User user) {
+    public Completable registerProc(User user) {
 
-        new Thread(() -> {
-            try {
-                UserDao userDao = AppDatabaseProvider.getINSTANCE().getUserDao();
+        return Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
                 UserEntity entity = new UserEntity();
                 entity.setId(user.getId());
                 entity.setPwd(user.getPwd());
                 userDao.addUser(entity);
-
-                UserEntity selectedEntity = userDao.login(user.getId(), user.getPwd());
-                Log.d("DB", selectedEntity.toString());
-
-                if(selectedEntity != null) {
-                    this.loginRepository.loginDone();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-        }).start();
+        });
+    }
 
+    @Override
+    public Single<Boolean> loginProc(User user) {
+        return userDao.login(user.getId(), user.getPwd())
+                .map(userEntities -> {
+                    Log.d("DB", "userEntitys = " + userEntities);
+                    return userEntities.size() > 0;
+                });
     }
 }

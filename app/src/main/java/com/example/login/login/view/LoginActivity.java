@@ -12,6 +12,9 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -35,6 +38,9 @@ public class LoginActivity extends AppCompatActivity
     @BindView(R.id.btnSave)
     Button btnSave;
 
+    @BindView(R.id.btnRegister)
+    Button btnRegister;
+
     static final String _TAG = "LoginActivity";
 
     LoginContract.Presenter presenter;
@@ -54,15 +60,29 @@ public class LoginActivity extends AppCompatActivity
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = etTitle.getText().toString();
-                String pwd = etPwd.getText().toString();
-                User user = new User();
-                user.setId(id);
-                user.setPwd(pwd);
+                User user = getUser();
                 presenter.loginProc(user);
             }
         });
 
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User user = getUser();
+                presenter.registerProc(user);
+            }
+        });
+
+    }
+
+    private User getUser() {
+        User user = new User();
+        String id = etTitle.getText().toString();
+        String pwd = etPwd.getText().toString();
+        user.setId(id);
+        user.setPwd(pwd);
+
+        return user;
     }
 
     private void save() {
@@ -93,8 +113,18 @@ public class LoginActivity extends AppCompatActivity
     }
 
     @Override
+    public void loginFailed() {
+        Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void loginDone() {
-        Toast.makeText(this, " Ok! Done ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "로그인 완료", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void registerDone() {
+        Toast.makeText(LoginActivity.this, "등록 완료", Toast.LENGTH_SHORT).show();
     }
 
     @Override

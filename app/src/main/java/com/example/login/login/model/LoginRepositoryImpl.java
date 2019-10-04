@@ -5,6 +5,9 @@ import com.example.login.login.model.datasources.DataSource;
 import com.example.login.login.model.datasources.local.LocalDataSourceImpl;
 import com.example.login.login.model.datasources.remote.RemoteDataSourceimpl;
 
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
 public class LoginRepositoryImpl implements LoginRepository{
 
     LoginContract.Presenter presenter;
@@ -21,16 +24,19 @@ public class LoginRepositoryImpl implements LoginRepository{
     }
 
     @Override
-    public void loginProc(User user) {
-        //TODO DataSource 연결
-        // 로컬에 데이터가 없는 경우
-        // 서버통신 한후에 로컬에 다시 저장
-        // 5분안에 local로 계속 호출해서 캐싱 전략
-       localDataSource.loginProc(user);
+    public Single<Boolean> loginProc(User user) {
+       return localDataSource.loginProc(user);
+
     }
 
     @Override
     public void loginDone() {
         this.presenter.loginDone();
+    }
+
+
+    @Override
+    public Completable registerProc(User user) {
+        return localDataSource.registerProc(user);
     }
 }
